@@ -1,0 +1,138 @@
+﻿@model HubnyxQMS.ViewModels.ManageUserViewModel
+@{
+    ViewData["Title"] = "ManageUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var roles = ViewBag.UserRoles;
+}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-header start -->
+                <div class="page-header">
+                    <div class="row align-items-end">
+                        <div class="col-lg-4">
+                            <div class="page-header-title">
+                                <div class="d-inline">
+                                    <h4>Edit Staff</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page-header end -->
+                <!-- Page-body start -->
+                <div class="page-body">
+                    <form asp-action="ManageUser" asp-controller="Account" enctype="multipart/form-data" method="Post">
+                       <div class="auth-box card">
+                                <div class="card-block">
+                                    <div class="row m-b-20">
+                                        <div class="col-md-12">
+                                            <h3 class="text-center">
+                                                Nyati Sacco QMS | Edit
+                                            </h3>
+
+                                        </div>
+                                    </div>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label>FirstName</label>
+                                        <input name="FirstName" class="form-control" value="@Model.FullName" />
+                                        <span class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <labe>Email</labe>
+                                        <input name="Email" class="form-control" value="@Model.UserEmail" />
+                                        <span class="text-danger"></span>
+                                    </div>
+                                    <select name="addRole" class="form-group">
+                                        <option value="">Select Role to Add</option>
+                                        <option value="SuperAdmin">Admin</option>
+                                    </select>
+
+                                    <select name="removeRole" class="form-group">
+                                        <option value="">Delete User from Role</option>
+                                        @foreach (var role in roles)
+                                        {
+                                            <option value="@role">@(role)</option>
+                                        }
+                                    </select>
+
+                                    <input type="hidden" name="userId" value="@Model.UserEmail" readonly /><br />
+                                    <div class="row m-t-30">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-dark btn-md btn-block waves-effect waves-light text-center m-b-20">Edit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+                <div class="page-body">
+                            <div class="auth-box card">
+                                <div class="card-block">
+                                    <div class="row m-b-20">
+                                        <div class="col-md-12">
+                                            <h3 class="text-center">
+                                                @Model.FullName Services
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-block table-border-style">
+                                        <form asp-action="addservice" method="post">
+                                            <input type="hidden" name="userId" value="@Model.UserEmail" readonly />
+                                            <select name="addserv" class="form-group">
+                                                <option value="">---Add Service---</option>
+                                                @foreach (var serv in ViewBag.selectperm)
+                                                {
+                                                    <option value="@serv.Id">@serv.Name</option>
+                                                }
+                                            </select>
+                                            <button type="submit" class="btn btn-success btn-sm">Add</button>
+                                        </form>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Service</th>
+                                                        <th>Section</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (ViewBag.perm != null)
+                                                    {
+                                                        @foreach (var item1 in ViewBag.perm)
+                                                        {
+                                                            <tr>
+                                                                <th scope="row"></th>
+                                                                <td>@item1.Service.Name</td>
+                                                                <td>@item1.Service.Section.Name</td>
+                                                                <td>
+                                                                    <form asp-action="removeservice" method="post">
+                                                                        <input type="hidden" name="id" value="@item1.Id" />
+                                                                        <input type="hidden" name="userId" value="@Model.UserEmail" />
+                                                                        <input type="submit" onclick="return confirm('Are you sure you want to remove?')" class="btn btn-danger btn-sm" value="Remove" />
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+
+                                                </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page-body end -->
+    </div>
+</div>
+
+

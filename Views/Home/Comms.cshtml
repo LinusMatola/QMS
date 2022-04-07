@@ -1,0 +1,80 @@
+﻿@model IEnumerable<HubnyxQMS.Models.InternalComm>
+@{
+    ViewData["Title"] = "Comms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-header start -->
+                <div class="page-header">
+                    <div class="row align-items-end">
+                        <div class="col-lg-4">
+                            <div class="page-header-title">
+                                <div class="d-inline">
+                                    <h4>My Messages</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page-header end -->
+                <!-- Page-body start -->
+                <div class="page-body">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <a asp-action="CreateInternalMessage" class="btn btn-success btn-sm">Create Message</a>
+                        </div>
+                        <div class="card-block table-border-style">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th class="col-6">Message</th>
+                                            <th>Sender</th>
+                                            <th>Created</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Message)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SenderEmail)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Created)
+                                            </td>
+                                            @if (item.Seen == true)
+                                            {
+                                                <td><a href="#" class="btn btn-success btn-sm">Done</a></td>
+                                            }
+                                            else
+                                            {
+                                                <td><a href="#" class="btn btn-danger btn-sm">Pending</a></td>
+                                            }
+                                        </tr>
+                                        }
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page-body end -->
+    </div>
+</div>

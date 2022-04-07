@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewData["Title"] = "QueueMembers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <div class="page-body">
+                    <div class="row">
+                        <!--  sale analytics start -->
+                        <div class="col-xl-12 col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="text-center">
+                                        @ViewBag.secname Members On Queue Today<span class="text-left">
+                                            <a asp-action="fosawaiting" class=" btn btn-success btn-sm text-white"><strong>FOSA</strong></a>
+                                            <a asp-action="cswaiting" class=" btn btn-info btn-sm text-white"><strong>Customer Service</strong></a>
+                                        </span>
+                                    </h3>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="feather icon-maximize full-card"></i></li>
+                                            <li><i class="feather icon-minus minimize-card"></i></li>
+                                            <li><i class="feather icon-trash-2 close-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="table-responsive table-border-style">
+                                        <table class="table table-inverse">
+                                            <thead>
+                                                <tr>
+                                                    <th>T.No</th>
+                                                    <th>Section</th>
+                                                    <th>Service</th>
+                                                    <th>Phone</th>
+                                                    <th>Arrived T</th>
+                                                    <th>Call T</th>
+                                                    <th>Waiting T</th>
+                                                    <th>Left T</th>
+                                                    <th>Served T</th>
+                                                    <th>Served By</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            @if (ViewBag.Members != null)
+                                            {
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.Members)
+                                                    {
+                                                    <tr>
+                                                        <th scope="row">@item.Name</th>
+                                                        <td>@item.Value.Section.ToString()</td>
+                                                        <td>@item.Value.Service.ToString()</td>
+                                                        <td>@item.Value.PhoneNumber.ToString()</td>
+                                                        <td>@item.Value.Created.ToString()</td>
+                                                        @if (item.Value.CallTime == "0")
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@item.Value.CallTime.ToString()</td>
+                                                        }
+                                                        @if (item.Value.WaitingTime == "0")
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@item.Value.WaitingTime.ToString()</td>
+                                                        }
+                                                        @if (item.Value.LeftTime == "0")
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@item.Value.LeftTime.ToString()</td>
+                                                        }
+                                                        @if (item.Value.ServedTime == "0")
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@item.Value.ServedTime.ToString()</td>
+                                                        }
+                                                        @if (item.Value.ServedBy == "0")
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@item.Value.ServedBy.ToString()</td>
+                                                        }
+                                                        @if (item.Value.Closed == "0")
+                                                        {
+                                                            <td><a href="#" class="btn btn-danger btn-sm">Pending</a></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td><a href="#" class="btn btn-success btn-sm">Closed</a></td>
+                                                        }
+
+                                                    </tr>
+                                                    }
+                                                </tbody>
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="styleSelector">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

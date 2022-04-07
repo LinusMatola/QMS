@@ -1,0 +1,209 @@
+﻿@model IEnumerable<HubnyxQMS.Models.QMSUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-header start -->
+                <div class="page-header">
+                    <div class="row align-items-end">
+                        <div class="col-lg-12">
+                            <div class="page-header-title">
+                                <div class="d-inline">
+                                    <h4>
+                                        All Staff Performance
+                                        <a asp-controller="Account" asp-action="Register" class="btn btn-success btn-sm float-right">Register</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page-header end -->
+                <!-- Page-body start -->
+                <div class="page-body">
+
+
+                    <!-- Simple card start -->
+
+                    <div class="row simple-cards users-card">
+                        @foreach (var item in Model)
+                        {
+                            //var successrate1 = "";
+                            //double membersiserved1 = item.ServedToday / ViewBag.totaltoday;
+                            //var percn1 = (membersiserved1 * 100);
+                            //double averageservingtimee1 = Int32.Parse(item.AverageServingTime) / item.ServedToday;
+                            //var averagetimeused1 = averageservingtimee1;
+
+                            //if (percn1 > 50 && averagetimeused1 <= 5)
+                            //{
+                            //    successrate1 = "100";
+                            //}
+                            //if (percn1 < 50 && averagetimeused1 <= 5)
+                            //{
+                            //    double percen1 = (double)percn1 / 50;
+                            //    var ttotal = (100 * (double)percen1).ToString();
+                            //    successrate1 = ttotal.Substring(0, 2);
+                            //}
+                            //if (percn1 > 50 && averagetimeused1 > 5)
+                            //{
+                            //    double percen1 = (double)5 / averagetimeused1;
+                            //    var ttotal = (100 * (double)percen1).ToString();
+                            //    successrate1 = ttotal.Substring(0, 2);
+                            //}
+                            //if (percn1 < 50 && averagetimeused1 > 5)
+                            //{
+                            //    double percen1 = (double)5 / averagetimeused1;
+                            //    double percen21 = (double)percn1 / 100;
+                            //    var ttotal = (243 * (double)percen1 * (double)percen21).ToString();
+                            //    successrate1 = ttotal.Substring(0, 2);
+                            //}
+                            int average = 0;
+                            if (item.AverageServingTime != null)
+                            {
+
+                                int totaltime = Int32.Parse(item.AverageServingTime);
+                                average = (totaltime / item.ServedToday);
+                            }
+                            <div class="col-md-12 col-xl-4">
+                                <div class="card user-card">
+                                    <div class="card-header-img">
+                                        <img class="img-fluid img-radius" src="~/libraries/assets/images/@item.ProfilePicture" height="230px" width="230px" alt="card-img">
+                                        <h4>@item.FullName</h4>
+                                        <h5><a href="#" class="__cf_email__">[Today: @ViewBag.today]</a></h5>
+                                        <h5><a asp-action="ManageUser" asp-route-id="@item.Id" class="__cf_email__ text-danger">[Edit]</a></h5><br />
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table m-0">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Members Served Today</th>
+                                                    <td>@item.ServedToday</td>
+                                                </tr>
+                                                @if (average != 0)
+                                                {
+                                                    <tr>
+                                                        <th scope="row">Average Member serving time</th>
+                                                        <td class="text-warning">@average</td>
+                                                    </tr>
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <th scope="row">Average Member serving time</th>
+                                                        <td class="text-warning">-</td>
+                                                    </tr>
+                                                }
+
+                                                @if (item.RatingToday != 0 && item.ServedToday != 0)
+                                                {
+                                                    <tr>
+                                                        @{
+                                                            //calculate
+                                                            double totayrating = (item.RatingToday / item.ServedToday);
+                                                        }
+                                                        <th scope="row">Member Rating Today</th>
+                                                        <td class="text-success">@totayrating / 5</td>
+
+                                                    </tr>
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <th scope="row">Member Rating Today</th>
+                                                        <td class="text-success">0 / 5</td>
+
+                                                    </tr>
+                                                }
+
+                                                <tr>
+                                                    <th scope="row">Success Rate Today</th>
+                                                    <td class="text-success"></td>
+                                                </tr>
+                                                @if (item.RatingAllTime != 0 && item.ServedAlltime != 0)
+                                                {
+                                                    <tr>
+                                                        @{
+                                                            //calculate
+                                                            double totalrating = (item.RatingAllTime / item.ServedAlltime);
+                                                        }
+                                                        <th scope="row">Member Rating Alltime</th>
+                                                        <td class="text-success">@totalrating / 5</td>
+
+                                                    </tr>
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <th scope="row">Member Rating Alltime</th>
+                                                        <td class="text-success">@item.RatingAllTime / 5</td>
+
+                                                    </tr>
+                                                }
+
+                                                <tr>
+                                                    <th scope="row">Success Rate Alltime</th>
+                                                    <td class="text-success"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Served Members Alltime</th>
+                                                    <td class="text-success">@item.ServedAlltime</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <!-- end of row -->
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Nyati QMS Staff</h5>
+
+                        </div>
+                        <div class="card-block table-border-style">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Escalates</th>
+                                            <th>Closed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item1 in ViewBag.Nonserving)
+                                        {
+                                            <tr>
+                                                <td><a asp-action="ManageUser" asp-route-id="@item1.Id" class="btn btn-dark btn-sm">Edit</a></td>
+                                                <td>@item1.FullName</td>
+                                                <td>@item1.Email</td>
+                                                <td>Role Name</td>
+                                                <td>0 <a asp-action="ManageUser" asp-route-id="@item1.Id" class="btn btn-info btn-sm">View</a></td>
+                                                <td>0 <a asp-action="ManageUser" asp-route-id="@item1.Id" class="btn btn-success btn-sm">View</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Simple card end -->
+                </div>
+            </div>
+        </div>
+        <!-- Page-body end -->
+    </div>
+</div>
+

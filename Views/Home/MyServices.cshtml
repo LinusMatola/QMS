@@ -1,0 +1,70 @@
+﻿@model IEnumerable<HubnyxQMS.Models.QMSUserService>
+@{
+    ViewData["Title"] = "MyServices";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <div class="page-body">
+                    <div class="row">
+                        <!--  sale analytics start -->
+                        <div class="col-xl-12 col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="text-center">
+                                        My Services Today<span class="text-left">
+                                        </span>
+                                    </h3>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="feather icon-maximize full-card"></i></li>
+                                            <li><i class="feather icon-minus minimize-card"></i></li>
+                                            <li><i class="feather icon-trash-2 close-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="table-responsive table-border-style">
+                                        <table class="table table-inverse">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Service</th>
+                                                    <th>Section</th>
+                                                    <th>Served Today</th>
+                                                    <th>Served All Time</th>
+                                                </tr>
+                                            </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                    <tr>
+                                                        <th scope="row"></th>
+                                                        <td>@item.Service.Name</td>
+                                                        <td>@item.Service.Section.Name</td>
+                                                        <td>@item.ServedToday</td>
+                                                        <td>@item.ServedAllTime</td>
+                                                    </tr>
+                                                    }
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="styleSelector">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

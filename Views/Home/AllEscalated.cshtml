@@ -1,0 +1,107 @@
+﻿@model IEnumerable<HubnyxQMS.Models.Escalate>
+@{
+    ViewData["Title"] = "MyEscalate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-header start -->
+                <div class="page-header">
+                    <div class="row align-items-end">
+                        <div class="col-lg-4">
+                            <div class="page-header-title">
+                                <div class="d-inline">
+                                    <h4>All Escalated</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page-header end -->
+                <!-- Page-body start -->
+                <div class="page-body">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <a asp-action="Create" class="btn btn-danger btn-sm">Pending</a>
+
+                            <a asp-action="Create" class="btn btn-success btn-sm">Closed</a>
+                        </div>
+                        <div class="card-block table-border-style">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>TicketNumber</th>
+                                            <th>From</th>
+                                            <th>Reason</th>
+                                            <th>R.T.Member</th>
+                                            <th>Chat</th>
+                                            <th>Created</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TicketNumber)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.EscalatedBy)
+                                                </td>
+                                                @if (item.Reason == null)
+                                                {
+                                                    <td>None</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Html.DisplayFor(modelItem => item.Reason)</td>
+                                                }
+                                                @if (item.ReplytoMember == null)
+                                                {
+                                                    <td><a href="" class="btn btn-dark btn-sm">Reply</a></td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@Html.DisplayFor(modelItem => item.ReplytoMember)</td>
+                                                }
+                                                @if (item.ReplytoEscalator == null)
+                                                {
+                                                    <td><a asp-action="ReplyToEscalated" asp-route-id="@item.Id" class="btn btn-success btn-sm">Chat (@item.TotalChats)</a></td>
+                                                }
+                                                else
+                                                {
+                                                    <td><a asp-action="ReplyToEscalated" asp-route-id="@item.Id" class="btn btn-success btn-sm">Chat (@item.TotalChats)</a></td>
+                                                }
+                                                <td>@Html.DisplayFor(modelItem => item.Created) @Html.DisplayFor(modelItem => item.CreatedTime)</td>
+                                                @if (item.Status == false)
+                                                {
+                                                    <td><a href="" class="btn btn-danger btn-sm">Pending</a></td>
+                                                }
+                                                else
+                                                {
+                                                    <td><a href="" class="btn btn-success btn-sm">Closed</a></td>
+                                                }
+                                            </tr>
+                                        }
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page-body end -->
+    </div>
+</div>

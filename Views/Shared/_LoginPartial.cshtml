@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<QMSUser> SignInManager
+@inject UserManager<QMSUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var userDisplayName = "";
+        var userimg = "";
+        var userCurrent = await UserManager.FindByNameAsync(User.Identity.Name);
+        userimg = userCurrent.ProfilePicture;
+        userDisplayName = userCurrent.FullName;
+        <li class="user-profile header-notification">
+            <div class="dropdown-primary dropdown">
+                <div class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="~/libraries/assets/images/@userimg" class="img-radius" alt="User-Profile-Image">
+                    <span>@userDisplayName!</span>
+                    <i class="feather icon-chevron-down"></i>
+                </div>
+                <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                    <li>
+                        <a asp-action="updateprofile" asp-controller="Account">
+                            <i class="feather icon-user"></i> Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="feather icon-mail"></i> My Messages
+                        </a>
+                    </li>
+                    <li>
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit" class="nav-link btn btn-link text-dark"><i class="feather icon-log-out"></i> Logout</button>
+                        </form>
+                    </li>
+                </ul>
+
+            </div>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

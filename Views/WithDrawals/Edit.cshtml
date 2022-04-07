@@ -1,0 +1,72 @@
+﻿@model HubnyxQMS.Models.WithDrawal
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>WithDrawal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Created" class="control-label"></label>
+                <input asp-for="Created" class="form-control" />
+                <span asp-validation-for="Created" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TicketNumber" class="control-label"></label>
+                <input asp-for="TicketNumber" class="form-control" />
+                <span asp-validation-for="TicketNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemberReason" class="control-label"></label>
+                <input asp-for="MemberReason" class="form-control" />
+                <span asp-validation-for="MemberReason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemberNumber" class="control-label"></label>
+                <input asp-for="MemberNumber" class="form-control" />
+                <span asp-validation-for="MemberNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WithDrawalReasonId" class="control-label"></label>
+                <select asp-for="WithDrawalReasonId" class="form-control" asp-items="ViewBag.WithDrawalReasonId"></select>
+                <span asp-validation-for="WithDrawalReasonId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Chat" class="control-label"></label>
+                <input asp-for="Chat" class="form-control" />
+                <span asp-validation-for="Chat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QMSUserId" class="control-label"></label>
+                <select asp-for="QMSUserId" class="form-control" asp-items="ViewBag.QMSUserId"></select>
+                <span asp-validation-for="QMSUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

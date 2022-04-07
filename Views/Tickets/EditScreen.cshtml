@@ -1,0 +1,168 @@
+﻿
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.80.0">
+    <title>Nyati QMS</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>*@
+
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~/libraries/bower_components/bootstrap/css/bootstrap.min.css">
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="~/libraries/assets/icon/feather/css/feather.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="~/libraries/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/libraries/assets/css/jquery.mCustomScrollbar.css">
+
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <meta name="theme-color" content="#7952b3">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @@media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+</head>
+<body class="bg-dark">
+
+
+    <main width="100%">
+
+        <div class="album py-0 pt-1 bg-dark">
+            <div class="pt-0">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 px-2">
+                    <div class="col-md-5 px-2">
+                        @if (ViewBag.active != null)
+                        {
+                            @foreach (var item in ViewBag.active)
+                            {
+                                <div class="card shadow-sm mb-2" style="background-color: #128315; height: 6.7rem;">
+                                    <div class="card-body h1">
+                                        CounterNumber @item.DeskCounter.CounterNumber <form asp-action="RemoveCounter"><input type="hidden" name="id" value="@item.Id" /><input type="submit" value="Remove" class="btn btn-danger btn-sm float-right" /></form>
+                                    </div>
+                                </div>
+                            }
+                                    <a href="/Tickets/AddCounter/" class="card shadow-sm mb-2 btn btn-info btn-sm float-right">Add New Counter (Max 4)</a>
+                           
+
+                        }
+
+
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card">
+                            <video width="100%" height="446px" controls loop autoplay>
+                                <source src="~/assets/videos/dividends.mp4" type="video/mp4">
+                                <source src="movie.ogg" type="video/ogg">
+                            </video>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <!-- Three columns of text below the carousel -->
+            <div class="row px-2 pt-0">
+                @if (ViewBag.active != null)
+                {
+                    @foreach (var item1 in ViewBag.active)
+                    {
+                        <div class="col-lg-3">
+                            <div class="row bg-dark">
+                                <div class="col p-1 d-flex flex-column">
+                                    <h1 class="text-center text-white"><strong style="font-size:80px">@item1.TicketNumber</strong></h1>
+                                    <p class="float-right text-white px-2">COUNTER @item1.DeskCounter.CounterNumber - NOW SERVING</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+            }
+            else
+            {
+
+            }
+                </div><!-- /.row -->
+
+
+
+        </div>
+    </main>
+    <script src="~/microsoft/signalr/dist/browser/signalr.js"></script>
+
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script type="text/javascript" src="~/libraries/bower_components/jquery/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/libraries/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/libraries/bower_components/popper.js/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/libraries/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="~/libraries/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="~/libraries/bower_components/modernizr/js/modernizr.js"></script>
+    <!-- Chart js -->
+    <script type="text/javascript" src="~/libraries/bower_components/chart.js/js/Chart.js"></script>
+    <!-- amchart js -->
+    <script src="~/libraries/assets/pages/widget/amchart/amcharts.js"></script>
+    <script src="~/libraries/assets/pages/widget/amchart/serial.js"></script>
+    <script src="~/libraries/assets/pages/widget/amchart/light.js"></script>
+    <script src="~/libraries/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="~/libraries/assets/js/SmoothScroll.js"></script>
+    <script src="~/libraries/assets/js/pcoded.min.js"></script>
+    <!-- custom js -->
+    <script src="~/libraries/assets/js/vartical-layout.min.js"></script>
+    <script type="text/javascript" src="~/libraries/assets/pages/dashboard/custom-dashboard.js"></script>
+    <script type="text/javascript" src="~/libraries/assets/js/script.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+
+    <script src="~/js/site.js"></script>
+
+</body>
+</html>
+

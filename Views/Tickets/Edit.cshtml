@@ -1,0 +1,80 @@
+﻿@model HubnyxQMS.Models.Ticket
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Ticket</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="TicketReports" class="control-label"></label>
+                <input asp-for="TicketReports" class="form-control" />
+                <span asp-validation-for="TicketReports" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisteredDevice" class="control-label"></label>
+                <input asp-for="RegisteredDevice" class="form-control" />
+                <span asp-validation-for="RegisteredDevice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Created" class="control-label"></label>
+                <input asp-for="Created" class="form-control" />
+                <span asp-validation-for="Created" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServedMembers" class="control-label"></label>
+                <input asp-for="ServedMembers" class="form-control" />
+                <span asp-validation-for="ServedMembers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoTurnOutMembers" class="control-label"></label>
+                <input asp-for="NoTurnOutMembers" class="form-control" />
+                <span asp-validation-for="NoTurnOutMembers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ratings" class="control-label"></label>
+                <input asp-for="Ratings" class="form-control" />
+                <span asp-validation-for="Ratings" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalEscalated" class="control-label"></label>
+                <input asp-for="TotalEscalated" class="form-control" />
+                <span asp-validation-for="TotalEscalated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AverageWaitingTime" class="control-label"></label>
+                <input asp-for="AverageWaitingTime" class="form-control" />
+                <span asp-validation-for="AverageWaitingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AverageServingTime" class="control-label"></label>
+                <input asp-for="AverageServingTime" class="form-control" />
+                <span asp-validation-for="AverageServingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MembersBeingServed" class="control-label"></label>
+                <input asp-for="MembersBeingServed" class="form-control" />
+                <span asp-validation-for="MembersBeingServed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

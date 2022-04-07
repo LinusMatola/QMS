@@ -1,0 +1,526 @@
+﻿@model IEnumerable<HubnyxQMS.Models.Report>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page body start -->
+                <div class="page-body">
+                    <!-- Container-fluid starts -->
+                    <div class="container">
+                        <!-- Main content starts -->
+                        <div>
+                            <!-- Invoice card start -->
+                            <div class="card">
+                                <div class="row invoice-contact">
+                                    <div class="col-md-8">
+                                        <div class="invoice-box row">
+                                            <div class="col-sm-12">
+                                                <table class="table table-responsive invoice-table table-borderless">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><h4>Nyati QMS Comprehensive Report</h4></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#" target="_top"><span class="__cf_email__">[Printed by: @ViewBag.email]</span></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@ViewBag.date</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row invoive-info">
+                                        <div class="col-md-4 col-sm-6">
+                                            <h6>General :</h6>
+                                            <table class="table table-responsive invoice-table invoice-order table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Total Members :</th>
+                                                        <td> @ViewBag.totalmembers</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Total Served :</th>
+                                                        <td> @ViewBag.totalserved</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Average waiting time :</th>
+                                                        <td> @ViewBag.average min</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Average serving time :</th>
+                                                        <td> @ViewBag.averageserving min</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <h6>BOSA :</h6>
+                                            <table class="table table-responsive invoice-table invoice-order table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Total Members :</th>
+                                                        <td> @ViewBag.bosatotalmembers</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Total Served :</th>
+                                                        <td> @ViewBag.bosatotalserved</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Average waiting time :</th>
+                                                        <td> @ViewBag.bosaaverage min</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Average serving time :</th>
+                                                        <td> @ViewBag.bosaaverageserving min</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <h6 class="m-b-20">FOSA</h6>
+                                            <table class="table table-responsive invoice-table invoice-order table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Total Members :</th>
+                                                        <td> @ViewBag.fosatotalmembers</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Total Served :</th>
+                                                        <td> @ViewBag.fosatotalserved</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Average waiting time :</th>
+                                                        <td> @ViewBag.fosaaverage min</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Average serving time :</th>
+                                                        <td> @ViewBag.fosaaverageserving min</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h5>General Detailed Report</h5><br>
+                                            <div class="table-responsive">
+                                                <table class="table  invoice-detail-table">
+                                                    <thead>
+                                                        <tr class="thead-default">
+                                                            <th>Description</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.totalmembers</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Served Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.totalserved</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Not Served Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.notserved</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Rating</h6>
+                                                            </td>
+                                                            <td>@ViewBag.rating</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Waiting time</h6>
+                                                            </td>
+                                                            <td>@ViewBag.average min</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Serving time</h6>
+                                                            </td>
+                                                            <td>@ViewBag.averageserving min</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Escalated Cases</h6>
+                                                            </td>
+                                                            <td>@ViewBag.totalescalated</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Date with most members</h6>
+                                                            </td>
+                                                            <td>
+                                                                @ViewBag.mostdays - @ViewBag.most members
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Visits per day</h6>
+                                                            </td>
+                                                            <td>@ViewBag.averagevisits</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Staff Who Served Most Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.mostserved - @ViewBag.max</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <h5>BOSA Detailed Report</h5><br>
+                                            <div class="table-responsive">
+                                                <table class="table  invoice-detail-table">
+                                                    <thead>
+                                                        <tr class="thead-default">
+                                                            <th>Description</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.bosatotalmembers</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Served Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.bosatotalserved</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Not Served Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.bosaaverage </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Rating</h6>
+                                                            </td>
+                                                            <td>0</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Waiting time</h6>
+                                                            </td>
+                                                            <td>@ViewBag.bosaaverageserving min</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Serving time</h6>
+                                                            </td>
+                                                            <td>@ViewBag.bosaaverageserving min</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Escalated Cases</h6>
+                                                            </td>
+                                                            <td>@ViewBag.bosaescalated</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Date with most members</h6>
+                                                            </td>
+                                                            <td>
+                                                                @ViewBag.bosamostdays - @ViewBag.bosamost members
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Visits per day</h6>
+                                                            </td>
+                                                            <td>@ViewBag.bosaaveragevisits</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Staff Who Served Most Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.mostservedbosa</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12">
+                                            <h5>FOSA Detailed Report</h5><br>
+                                            <div class="table-responsive">
+                                                <table class="table  invoice-detail-table">
+                                                    <thead>
+                                                        <tr class="thead-default">
+                                                            <th>Description</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.fosatotalmembers</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Served Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.fosatotalserved</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Not Served Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.fosaaverage </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Rating</h6>
+                                                            </td>
+                                                            <td>0</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Waiting time</h6>
+                                                            </td>
+                                                            <td>@ViewBag.fosaaverageserving min</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Serving time</h6>
+                                                            </td>
+                                                            <td>@ViewBag.fosaaverageserving min</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Total Escalated Cases</h6>
+                                                            </td>
+                                                            <td>@ViewBag.fosaescalated</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Date with most members</h6>
+                                                            </td>
+                                                            <td>
+                                                                @ViewBag.fosamostdays - @ViewBag.fosamost members
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Average Visits per day</h6>
+                                                            </td>
+                                                            <td>@ViewBag.fosaaveragevisits</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h6>Staff Who Served Most Members</h6>
+                                                            </td>
+                                                            <td>@ViewBag.mostservefosa</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12">
+                                            <h5>Bosa - Services</h5><br>
+                                            <div class="table-responsive">
+                                                <table class="table  invoice-detail-table">
+                                                    <thead>
+                                                        <tr class="thead-default">
+                                                            <th>Description</th>
+                                                            <th>Total Members</th>
+                                                            <th>Total Served</th>
+                                                            <th>Average Waiting time</th>
+                                                            <th>Average Serving time</th>
+                                                            <th>Escalated Cases</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{
+                                                            int servv = 0;
+                                                            int bosaserved = 0;
+                                                            int bosaavgservtime = 0;
+                                                            int bosaavgwaittime = 0;
+                                                            int totalbos = 0;
+                                                            int bavge = 0;
+                                                            int bavgewait = 0;
+                                                            int bescalated = 0;
+                                                        }
+                                                        @foreach (var item1 in ViewBag.bosa)
+                                                        {
+                                                            foreach (var serv1 in ViewBag.bosaserv)
+                                                            {
+
+                                                                if (serv1.ServiceId == item1.Id)
+                                                                {
+                                                                    totalbos++;
+                                                                    bescalated += serv1.EscalatedCases;
+                                                                    servv += serv1.TotalMembers;
+                                                                    bosaserved += serv1.TotalServed;
+                                                                    bosaavgservtime += serv1.TotalServingTime;
+                                                                    bosaavgwaittime += serv1.TotalWaitingTime;
+                                                                }
+                                                            }
+                                                            try
+                                                            {
+                                                                bavge = (bosaavgservtime / totalbos);
+                                                            }
+                                                            catch
+                                                            {
+                                                                bavge = 0;
+                                                            }
+                                                            try
+                                                            {
+                                                                bavgewait = (bosaavgwaittime / totalbos);
+                                                            }
+                                                            catch
+                                                            {
+                                                                bavgewait = 0;
+                                                            }
+
+                                                            <tr>
+                                                                <td>
+                                                                    <h6>@item1.Name</h6>
+                                                                </td>
+                                                                <td>@servv</td>
+                                                                <td>@bosaserved</td>
+                                                                <td>@bavge min</td>
+                                                                <td>@bavgewait</td>
+                                                                <td>@bescalated</td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <h5>FOSA - Services</h5><br>
+                                            <div class="table-responsive">
+                                                <table class="table  invoice-detail-table">
+                                                    <thead>
+                                                        <tr class="thead-default">
+                                                            <th>Description</th>
+                                                            <th>Total Members</th>
+                                                            <th>Total Served</th>
+                                                            <th>Average Waiting time</th>
+                                                            <th>Average Serving time</th>
+                                                            <th>Escalated Cases</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{
+                                                            int servvv = 0;
+                                                            int fosaserved = 0;
+                                                            int fosaavgservtime = 0;
+                                                            int fosaavgwaittime = 0;
+                                                            int totalfos = 0;
+                                                            int favge = 0;
+                                                            int favgewait = 0;
+                                                            int fescalated = 0;
+                                                        }
+                                                        @foreach (var item in ViewBag.fosa)
+                                                        {
+                                                            foreach (var serv in ViewBag.bosaserv)
+                                                            {
+
+                                                                if (serv.ServiceId == item.Id)
+                                                                {
+                                                                    totalfos++;
+                                                                    fescalated += serv.EscalatedCases;
+                                                                    servvv += serv.TotalMembers;
+                                                                    fosaserved += serv.TotalServed;
+                                                                    fosaavgservtime += serv.TotalServingTime;
+                                                                    fosaavgwaittime += serv.TotalWaitingTime;
+                                                                }
+                                                            }
+                                                            try
+                                                            {
+                                                                favge = (fosaavgservtime / totalfos);
+                                                            }
+                                                            catch
+                                                            {
+                                                                favge = 0;
+                                                            }
+                                                            try
+                                                            {
+                                                                favgewait = (fosaavgwaittime / totalfos);
+                                                            }
+                                                            catch
+                                                            {
+                                                                favgewait = 0;
+                                                            }
+
+                                                            <tr>
+                                                                <td>
+                                                                    <h6>@item.Name</h6>
+                                                                </td>
+                                                                <td>@servvv</td>
+                                                                <td>@fosaserved</td>
+                                                                <td>@favge min</td>
+                                                                <td>@favgewait</td>
+                                                                <td>@fescalated</td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Invoice card end -->
+                            <div class="row text-center">
+                                <div class="col-sm-12 invoice-btn-group text-center">
+                                    <a asp-action="CreatePdf" type="button" class="btn btn-primary btn-print-invoice m-b-10 btn-sm waves-effect waves-light m-r-20">Download</a>
+                                    <button type="button" class="btn btn-danger waves-effect m-b-10 btn-sm waves-light">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container ends -->
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+        <!-- Warning Section Starts -->
+
+        <div id="styleSelector">
+
+        </div>
+    </div>
+</div>

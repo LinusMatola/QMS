@@ -1,0 +1,215 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="row">
+                        <!-- task, page, download counter  start -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-c-yellow update-card">
+                                <div class="card-block">
+                                    <div class="row align-items-end">
+                                        <div class="col-8">
+                                            <h4 class="text-white" id="totalmembers"></h4>
+                                            <h6 class="text-white m-b-0">Members Waiting</h6>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <canvas id="update-chart-1" height="50"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : @ViewBag.lastupdate <a href="#" class="float-right">View</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-c-green update-card">
+                                <div class="card-block">
+                                    <div class="row align-items-end">
+                                        <div class="col-8">
+                                            <h4 class="text-white" id="totalmembersserved"></h4>
+                                            <h6 class="text-white m-b-0">Served Members</h6>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <canvas id="update-chart-2" height="50"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : @ViewBag.lastupdate  <a href="#" class="float-right">View</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-c-pink update-card">
+                                <div class="card-block">
+                                    <div class="row align-items-end">
+                                        <div class="col-8">
+                                            <h4 class="text-white" id="totalstaffserving"></h4>
+                                            <h6 class="text-white m-b-0">Being Served</h6>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <canvas id="update-chart-3" height="50"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : @ViewBag.lastupdate <a href="#" class="float-right">View</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-c-lite-green update-card">
+                                <div class="card-block">
+                                    <div class="row align-items-end">
+                                        <div class="col-8">
+                                            <h4 class="text-white" id="totalstaffserving"></h4>
+                                            <h6 class="text-white m-b-0">Staff Serving</h6>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <canvas id="update-chart-4" height="50"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : @ViewBag.lastupdate <a href="#" class="float-right">View</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- task, page, download counter  end -->
+                        <!--  sale analytics start -->
+                        @if (ViewBag.Error != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @ViewBag.Error
+                            </div>
+                        }
+                        <div class="col-xl-8 col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Members On Queue</h5>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li>Real Time Feed</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="table-responsive table-border-style">
+                                        <table class="table table-inverse">
+                                            <thead>
+                                                <tr>
+                                                    <th>T. Num</th>
+                                                    <th>Section</th>
+                                                    <th>Service</th>
+                                                    <th>Arrived At</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableBody"></tbody>
+                                        </table>
+                                        <div class="text-center">
+                                            <a href="#!" class=" b-b-primary text-primary">View all Members on queue</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-12">
+                            <div class="card user-card2">
+                                <div class="card-block text-center">
+                                    <h6 class="m-b-15">Members Waiting In Line</h6>
+                                    <div class="risk-rate">
+                                        <span id="totalmembers"></span>
+                                    </div>
+                                    <h6 class="m-b-10 m-t-10">Members You Served Today</h6>
+                                    <div class="row">
+                                        <div class="btn-group dropdown-split-primary col-md-4">
+                                            @if (ViewBag.nowserving != "")
+                                            {
+                                                <form asp-action="noturnup">
+                                                    <input type="hidden" name="currentmember" value="@ViewBag.nowserving" />
+                                                    <input type="hidden" name="checkwithdrawal" value="@ViewBag.iswithdrawal" />
+                                                    <input type="submit" onclick="if (!confirm('Are you sure Member didnt turn up?')) { return false}" class="btn btn-danger btn-sm btn-block" value="No TnUP" />
+                                                </form>
+                                            }
+                                        </div>
+                                        <div class="btn-group dropdown-split-primary col-md-4">
+                                            @if (TempData["Error"] != null)
+                                            {
+                                                <h6><strong class="text-danger">@TempData["Error"]</strong></h6>
+                                            }
+                                            else
+                                            {
+                                                <h4><strong class="text-c-green">@ViewBag.served</strong>@ViewBag.totalserved</h4>
+                                            }
+                                        </div>
+                                        <div class="btn-group dropdown-split-primary col-md-4">
+                                            @if (ViewBag.nowserving != "")
+                                            {
+                                                <form asp-action="Close">
+                                                    <input type="hidden" name="sectionid" value="@ViewBag.sectionid" />
+                                                    <input type="hidden" name="currentmember" value="@ViewBag.nowserving" />
+                                                    <input type="hidden" name="checkwithdrawal" value="@ViewBag.iswithdrawal" />
+                                                    <input onclick="if (!confirm('Are you sure You want to close?')) { return false}" type="submit" class="btn btn-dark btn-sm btn-block" value="Close" />
+                                                </form>
+                                            }
+                                        </div>
+                                    </div>
+                                    @if (TempData["Errorr"] == null)
+                                    {
+                                        <div class="row justify-content-center m-t-10 b-t-default m-l-0 m-r-0">
+                                            <div class="col m-t-15 b-r-default">
+                                                <h6 class="text-muted">Now Serving</h6>
+                                                <h5>@ViewBag.nowserving / @ViewBag.secid</h5>
+                                            </div>
+                                            <div class="col m-t-15">
+                                                @if (ViewBag.nowserving != null)
+                                                {
+                                                    if (ViewBag.checkwithdrawal == "WITHDRAWAL")
+                                                    {
+                                                        <h6 class="text-muted">Add Reason</h6>
+                                                        <a asp-controller="withdrawals" asp-action="create" asp-route-sectionid="@ViewBag.sectionid" asp-route-id="@ViewBag.nowserving" class="btn btn-dark btn-sm btn-block">Withdrawal Reason</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h6 class="text-muted">Escalate</h6>
+                                                        <a asp-action="escalate" asp-route-id="@ViewBag.nowserving" class="btn btn-success btn-sm btn-block">Escalate</a>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="row justify-content-center m-t-10 b-t-default m-l-0 m-r-0">
+                                            <div class="col m-t-30">
+                                                <h6 class="text-danger">@TempData["Errorr"]</h6>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <form asp-action="CallMember" method="post">
+                                    <input type="hidden" name="currentmember" value="@ViewBag.nowserving" />
+                                    <input type="hidden" name="checkwithdrawal" value="@ViewBag.iswithdrawal" />
+                                    <input type="hidden" name="sectionid" value="@ViewBag.sectionid" />
+                                    <input type="submit" onclick="if (!confirm('Are you sure You Want To Call Member?')) { return false}" class="btn btn-success btn-block p-t-15 p-b-15" value="Call Next Member" />
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="styleSelector">
+
+            </div>
+        </div>
+    </div>
+</div>

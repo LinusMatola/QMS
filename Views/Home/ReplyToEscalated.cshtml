@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewData["Title"] = "ReplyToEscalated";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+
+
+                <!-- Page body start -->
+                <div class="page-body message">
+                    <div class="row">
+                        <!-- Message section start -->
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header bg-primary">
+                                    <div class="media">
+                                        <a class="media-left" href="#">
+                                            <img class="media-object img-radius msg-img-h" src="~/libraries/assets/images/@ViewBag.propic" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="txt-white">Sign in as</div>
+                                            <div class="f-13 txt-white text-white"><a href="../../../cdn-cgi/l/email-protection.htm" class="__cf_email__" data-cfemail="7213161f1b1c16171f1d32170a131f021e175c111d1f">[@ViewBag.email]</a></div>
+                                            <div class="input-group msg-ellipsis c-pointer">
+                                                <span role="tooltip" class="dropdown-toggle addon-btn ellipsis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                                                <div class="dropdown-menu dropdown-menu-right b-none elipsis-box msg-elipsis-box">
+                                                    <a class="dropdown-item" href="#">Clear chat</a>
+                                                    <a class="dropdown-item" href="#">Archive chat</a>
+                                                    <a class="dropdown-item" href="#">Create Shortcut</a>
+                                                    <a class="dropdown-item" href="#">Block user</a>
+                                                </div>
+                                            </div>
+                                            <i class="icofont icofont-navigation-menu contact-btn msg-nav"></i>
+                                        </div>
+                                        <i class="icon-options-vertical f-24 p-absolute msg-ellipsis hidden-md-down"></i>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 messages-content ">
+                                            <div>
+                                                @foreach (var message in ViewBag.messages)
+                                                {
+                                                    if (message.Value.Email.ToString() == ViewBag.email)
+                                                    {
+                                                        //left
+                                                        <div class="media">
+                                                            <div class="media-body text-right">
+                                                                <p class="msg-reply bg-primary">@message.Value.Message.ToString().</p>
+                                                                <p><i class="icofont icofont-wall-clock f-12"></i> @message.Value.Time.ToString() / @message.Value.Email.ToString()</p>
+                                                            </div>
+                                                            <div class="media-right friend-box">
+                                                                <a href="#">
+                                                                    <img class="media-object img-radius" src="~/libraries/assets/images/@message.Value.ProfilePic.ToString()" alt="">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        //right
+                                                        <div class="media">
+                                                            <div class="media-left friend-box">
+                                                                <a href="#">
+                                                                    <img class="media-object img-radius" src="~/libraries/assets/images/@message.Value.ProfilePic.ToString()" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <p class="">@message.Value.Message.ToString()</p>
+                                                                <p><i class="icofont icofont-wall-clock f-12"></i> @message.Value.Time.ToString() / @message.Value.Email.ToString()</p>
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                }
+                                            </div>
+                                            <hr>
+                                            <div class="messages-send">
+                                                <form asp-action="Chatreply" method="post">
+                                                    <input type="hidden" name="id" value="@ViewBag.id" />
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="text" name="message" class="form-control new-msg" placeholder="Message Here...." aria-describedby="basic-addon2">
+                                                            <input type="submit" class="input-group-addon bg-c-blue text-white" id="basic-addon2" value="Send" />
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Message section end -->
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+        <!-- Warning Section Starts -->
+        <div id="styleSelector">
+
+        </div>
+    </div>
+</div>
+
